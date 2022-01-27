@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: relative;
+            width: 600px;
+            /* height: 200px; */
+            /* background-color:red; */
+            margin: 100px auto;
+        }
+        input {
+            width: 600px;
+            height: 40px;
+            padding: 2px 10px;
+            border: none;
+            border-bottom: 2px solid blueviolet;
+            outline: none;
+        }
+            /* border-radius: 20px; */
+        img {
+            position: absolute;
+            width: 20px;
+            top: 8px;
+            right: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <label for="">
+            <img src="./image/close.png" alt="" id="btn">
+        </label>
+        <input type="password" placeholder="请输入密码" id="ip">
+    </div>
+    <script>
+        var img = document.getElementById('btn');
+        var inp = document.getElementById('ip');
+        var flag = 0;
+        img.onclick = function(){
+            if(flag == 0){
+                inp.type = 'text';
+                flag = 1;
+                img.src = './image/open.png';
+            }else {
+                inp.type = 'password';
+                img.src = './image/close.png';
+                flag = 0;
+            }
+        }
+    </script>
+</body>
+</html>
