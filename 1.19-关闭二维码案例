@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: relative;
+            width: 200px;
+            margin: 0 auto;
+        }
+        .cls {
+            position: absolute;
+            top: 20px;
+            background-color:wheat;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">二维码
+        <img src="./image/tao.png" alt="">
+        <i class="cls">×</i>
+    </div>
+    <script>
+        var cls = document.querySelector('.cls');
+        var box = document.querySelector('.box');
+        cls.onclick = function(){
+            box.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
