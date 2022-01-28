@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 700px;
+            height: 100px;
+            /* background-color: #888; */
+            margin: 20px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+        p {
+            display: inline-block;
+            font-size: 10px;
+            color: #999;
+            padding-left: 20px;
+            background: url(./image/mess.png)no-repeat left center;
+        }
+        .a {
+            display: inline-block;
+            font-size: 10px;
+            color: red;
+            padding-left: 20px;
+            background: url(./image/wrong.png)no-repeat left center;
+        }
+        .b {
+            display: inline-block;
+            font-size: 10px;
+            color: darkgreen;
+            padding-left: 20px;
+            background: url(./image/right.png)no-repeat left center;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="password" name="" id="">
+        <p class="w">请输入3~10位数的密码</p>
+    </div>
+    <script>
+        var inp = document.querySelector('input');
+        var w = document.querySelector('.w');
+        inp.onblur = function(){
+            if(this.value.length < 3 || this.value.length > 10){
+                w.className = 'a';
+                w.innerHTML = '对不起，你输入有误';
+            }else{
+                w.className = 'b';
+                w.innerHTML = '输入正确';
+            }
+        }
+    </script>
+</body>
+</html>
