@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 300px;
+            height: 300px;
+            font-size: 17px;
+            color: palevioletred;
+            background: palegreen;
+            border-collapse: collapse;
+            /* border:1px solid black; */
+            margin: 100px auto;
+            text-align: center;
+        }
+        thead tr th {
+            background-color: red;
+            border: 1px solid black;
+        }
+        tbody tr td {
+            border: 1px solid black;
+        }
+        tbody tr:hover {
+            cursor: pointer;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th><input type="checkbox" id="all"></th>
+                <th>商品</th>
+                <th>价钱</th>
+            </tr>
+        </thead>
+        <tbody id="one">
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>8000</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>iphone8</td>
+                <td>8000</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var all = document.getElementById('all');
+        var ones = document.getElementById('one').getElementsByTagName('input');
+        all.onclick = function(){
+            // console.log(this.checked);
+            for(var i = 0;i < ones.length;i++){
+                ones[i].checked = this.checked;
+            }
+        }
+        for(var i = 0;i < ones.length;i++){
+            ones[i].onclick = function(){
+                var flag = true;
+            for(var i = 0;i < ones.length;i++){
+            if(ones[i].checked != true){
+                flag = false;
+        }
+        }
+        all.checked = flag; 
+        }
+        }
+        
+        
+        
+    </script>
+</body>
+</html>
