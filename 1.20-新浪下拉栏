@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .nav {
+            width: 800px;
+            margin: 100px auto;
+        } 
+        li {
+            list-style: none;
+        }
+        a {
+            text-decoration: none;
+        }
+        .nav li {
+            float: left;
+            color: rosybrown;
+            font-size: 15px;
+            width: 50px;
+            /* height: 200px; */
+            text-align: center;
+            /* padding: 0 10px; */
+        }
+        .nav li a {
+            width: 100%;
+            background-color: forestgreen;
+        }
+        .nav li a:hover {
+            background-color: red;
+        }
+        .nav ul li {
+            background-color: firebrick;
+            border: 1px solid forestgreen;
+        }
+        .nav ul {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+        <ul class="nav">
+            <li>
+                <a href="#">售后</a>
+                <ul>
+                    <li>啊</li>
+                    <li>啊</li>
+                    <li>啊</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">售后</a>
+                <ul>
+                    <li>啊</li>
+                    <li>啊</li>
+                    <li>啊</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">售后</a>
+                <ul>
+                    <li>啊</li>
+                    <li>啊</li>
+                    <li>啊</li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">售后</a>
+                <ul>
+                    <li>啊</li>
+                    <li>啊</li>
+                    <li>啊</li>
+                </ul>
+            </li>
+        </ul>
+        <script>
+            var nav = document.querySelector('.nav');
+            var lis = nav.children;
+            for(var i = 0;i < lis.length;i++){
+                lis[i].onmouseover = function(){
+                    this.children[1].style.display = 'block';
+                }
+                lis[i].onmouseout = function(){
+                    this.children[1].style.display = 'none';
+                }
+            }
+        </script>
+</body>
+</html>
