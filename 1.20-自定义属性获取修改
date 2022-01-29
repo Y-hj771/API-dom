@@ -15,6 +15,10 @@
         // 称为自定义属性 index
         console.log(demo.getAttribute('id'));
         console.log(demo.getAttribute('index'));
+        //修改属性值
+        demo.setAttribute('id','one');
+        demo.className = 'b';
+        demo.setAttribute('class','c');
     </script>
 </body>
 </html>
