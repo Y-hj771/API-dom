@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <img src="./img/angel.gif" alt="">
+    <script>
+        var pic = document.querySelector('img');
+        document.addEventListener('mousemove',function(e){
+            // console.log(1);
+            // console.log(e.pageX);
+            // console.log(e.pageY);
+            //把获得的X和Y给top和left 
+            var x = e.pageX;
+            var y = e.pageY;
+            pic.style.top = y - 10 + 'px';//一定要注意加单位px
+            pic.style.left = x -10 + 'px';
+        });
+    </script>
+</body>
+</html>
