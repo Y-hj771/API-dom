@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>传统事件注册</button>
+    <button>方法监听注册事件</button>
+    <script>
+        //传统注册事件  只会弹出最后一个
+        var btn = document.querySelectorAll('button');
+        btn[0].onclick = function(){
+            alert('想怎样啦');
+        }
+        btn[0].onclick = function(){
+            alert('高咩啦');
+        }
+        //方法监听注册事件  不带on  可以依次弹出你写的
+        btn[1].addEventListener('click',function(){
+            alert('打你');
+        })
+        btn[1].addEventListener('click',function(){
+            alert('打死你');
+        })
+    </script>
+</body>
+</html>
