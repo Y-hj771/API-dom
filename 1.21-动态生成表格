@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            margin: 20px auto;
+            font-size: 17px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        thead tr th {
+            width: 200px;
+            background-color: tan;
+            cursor: pointer;
+            border: 1px solid firebrick;
+        }
+        tbody tr td {
+            cursor: pointer;
+            width: 200px;
+            background-color: tan;
+            border: 1px solid firebrick
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>学科</th>
+                <th>分数</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <script>
+        //先准备好学生数据  存放在数组中 以对象的形式存在数组中
+        var datas = [
+            {
+                name: '小红',
+                subject: 'javascript',
+                mark: 100
+            },{
+                name: '小王',
+                subject: 'javascript',
+                mark: 98
+            },{
+                name: '小李',
+                subject:'javascript',
+                mark: 100
+            }
+        ];
+        //往tbody里面创建行 有几个人就创建几行
+        var tbody = document.querySelector('tbody');
+        for(var i = 0;i < datas.length;i++){//遍历循环创建行
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            //遍历循环数组里的对象个数
+            for(var k in datas[i]){
+                var td = document.createElement('td');//创建单元格
+                td.innerHTML = datas[i][k];//obj[k]得到属性值 k是属性名
+                tr.appendChild(td);
+            }
+            //创建有删除两个字的单元格
+            var td = document.createElement('td');
+            td.innerHTML = '<a href = "javascript:;">删除</a>';
+            tr.appendChild(td);
+        }
+        //删除行
+         var as = document.querySelectorAll('a');
+         for(var i = 0;i < as.length;i++){
+            as[i].onclick = function(){
+                tbody.removeChild(this.parentNode.parentNode);
+            }
+         }
+    </script>
+</body>
+</html>
