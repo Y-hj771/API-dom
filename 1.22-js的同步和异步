@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //第一个问题
+        console.log(1);
+        //同步的话会先输出3 然后在打印2
+        //异步的话会因为3打印会比较耗时，同时进行打印3的工作 因为打印2时间短 所以先打印2 然后打印3
+        setTimeout(function(){
+            console.log(3);
+        },1000)
+
+        console.log(2);
+    </script>
+</body>
+</html>
