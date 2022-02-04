@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- window.onload是加载事件，所有文档内容完全加载完成会触发该事件 -->
+    <script>
+        window.addEventListener('load',function(){
+            var bnt = document.querySelector('button');
+            bnt.addEventListener('click',function(){
+                alert('我出来欧');
+            })
+        })
+        //DOMContentLoaded是dom加载完就运行不包括CSS，flash,图片等 速度快一点
+        document.addEventListener('DOMContentLoaded',function(){
+            alert(33);
+        }) 
+        
+    </script>
+    <button>按钮</button>
+</body>
+</html>
