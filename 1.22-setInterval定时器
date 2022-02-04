@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        setInterval(function() {
+            alert('我每隔两秒出来一次');
+        }, 2000);
+    </script>
+    <!-- setInterval是每隔一个延迟时间就调用这个函数 会重复很多次 -->
+    <!-- setTimeout是延迟时间到了就执行一次 然后结束调用 不会重复 -->
+</body>
+</html>
