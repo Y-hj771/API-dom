@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            float: left;
+            margin-left: 10px;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: black;
+            color: blanchedalmond;
+            text-align: center;
+            line-height: 40px;
+        }
+
+    </style>
+</head>
+<body>
+    <span class="hour">1</span>
+    <span class="minute">2</span>
+    <span class="second">3</span>
+    <script>
+        var hour = document.querySelector('.hour');
+        var minute = document.querySelector('.minute');
+        var second = document.querySelector('.second');
+        var inputTime = +new Date('2022-2-4 16:00:00');
+        countDown();//消除刷新时时间初始化的效果
+        // 开启定时器
+        setInterval(countDown, 1000);
+        function countDown(time){
+            var nowTime = +new Date();
+            var times = (inputTime - nowTime) / 1000;
+            var h = parseInt(times / 60 / 60 % 24);
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h;
+            var m = parseInt(times / 60 % 60);
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m;
+            var s = parseInt(times % 60);
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s;
+        }
+    </script>
+</body>
+</html>
