@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"><button>发送</button>
+    <script>
+        //获取按钮
+        //点击后按钮变成不可选取disabled=true 按钮innerHTML='还剩time秒重新发送' 需要判断time是否为0 ==0后需要重新修改innerHTML为发送，disabled=false 并且清楚倒计时
+        var bnt = document.querySelector('button');
+        var time = 10;
+        bnt.addEventListener('click',function(){
+            bnt.disabled = true;
+                var timer = setInterval(function(){
+                if(time == 0){
+                    clearInterval(timer);
+                bnt.disabled = false;
+                time = 10;
+                bnt.innerHTML = '发送';
+            }else {
+                bnt.innerHTML = '还剩'+time+'秒后重新发送';
+                time--;}
+            },1000)
+            })
+    </script>
+</body>
+</html>
