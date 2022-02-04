@@ -51,6 +51,14 @@
                 con.style.display = 'block';
             }
         })
+        inp.addEventListener('blur',function(){
+            con.style.display = 'none';
+        })
+        inp.addEventListener('focus',function(){
+            if(this.value !== ''){
+                con.style.display = 'block';
+            }
+        })
     </script>
 </body>
 </html>
