@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: relative;
+        }
+        a {
+            display: flex;
+            text-decoration: none;
+            font-size: 30px;
+            justify-content: center;
+        }
+        .box {
+            position: absolute;
+            display: none;
+            top: 50%;
+            left: 50%;
+            margin-top: -150px;
+            margin-left: -200px;
+            margin-top: 100px;
+            width: 400px;
+            height: 300px;
+            background-color: gold;
+            
+        }
+        .close a {
+            float: right;
+        }
+        .content p {
+            display: block;
+            float: left;
+            /* width: 100px; */
+            margin-top: 60px;
+        }
+        input {
+            margin-top: 60px;
+        }
+        .title {
+            text-align: center;
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="one">点我登录</a>
+    <div class="box">
+        <div class="close"><a href="#">关闭</a></div>
+        <div class="title">登录界面</div>
+        <div class="content"> <p>用户名</p> <input type="text">
+        </div>
+    </div>
+    <script>
+        var one = document.querySelector('.one');
+        var box = document.querySelector('.box');
+        var close = document.querySelector('.close');
+        one.addEventListener('click',function(){
+            box.style.display = 'block';
+        })
+        close.addEventListener('click',function(){
+            box.style.display = 'none';
+        })
+        var title = document.querySelector('.title');
+        title.addEventListener('mousedown',function(e){
+            var x = e.pageX - box.offsetLeft;
+            var y = e.pageY - box.offsetTop;
+            document.addEventListener('mousemove',move)
+            function move(e){
+                box.style.left = e.pageX - x + 190 + 'px';
+                box.style.top = e.pageY - y -90 + 'px';
+            }
+            document.addEventListener('mouseup',function(){
+                document.removeEventListener('mousemove',move);
+            })
+        })
+    </script>
+</body>
+</html>
