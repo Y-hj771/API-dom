@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 800px;
+            height: 800px;
+            /* background-color: chartreuse; */
+        }
+        .a {
+            position: relative;
+            float: left;
+            margin-right: 20px;
+            width: 200px;
+            height: 200px;
+            border: 1px solid darkblue;
+            /* height: 50%; */
+        }
+        .a img {
+            width: 100%;
+            /* background-position: 100%; */
+        }
+        .a .one {
+            display: none;
+            cursor: move;
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            background-color: gold;
+            opacity: .5;
+        }
+        .b {
+            display: none;
+            position: relative;
+            top: 0;
+            left: 50px;
+            width: 367px;
+            height: 348px;
+            background-color: gold;
+            border: 1px solid darkblue;
+            overflow: hidden;
+        }
+        .big {
+            position: absolute;
+            top: 0;
+            left: 0;
+        } 
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="a"><img src="./img/s3.png" alt="" class="small">
+        <div class="one"></div>
+    </div>
+        <div class="b"><img src="./img/b3.png" alt="" class="big"></div>
+    </div>
+    <script>
+        var a = document.querySelector('.a');
+        var b = document.querySelector('.b');
+        var one = document.querySelector('.one');
+        a.addEventListener('mouseover',function(){
+            one.style.display = 'block';
+            b.style.display = 'block';
+        })
+        a.addEventListener('mouseout',function(){
+            one.style.display = 'none';
+            b.style.display = 'none';
+        })
+        a.addEventListener('mousemove',function(e){
+            var x = e.pageX - this.offsetLeft;
+            var y = e.pageY - this.offsetTop;
+            var oneX = x - one.offsetWidth/2;
+            var oneY = y - one.offsetHeight/2;
+            var max = a.offsetWidth - one.offsetWidth;
+            //不让方块超出盒子的范围 
+            if(oneX <= 0){
+                oneX = 0;
+            }else if(oneX >= max){
+                oneX = max;
+            }
+            if(oneY <= 0)
+            {
+                oneY = 0;
+            }else if(oneY >= max){
+                oneY = max;
+            }
+            one.style.left = oneX + 'px';
+            one.style.top = oneY + 'px';
+            
+            //大图片的移动距离 = 遮挡层移动距离 * 大图片最大移动距离 / 遮挡层的最大移动距离
+            var big = document.querySelector('.big');
+            //大图片的最大移动距离
+            var bigMax = big.offsetWidth - b.offsetWidth;
+            //遮挡层最大移动距离
+            // var max = a.offsetWidth - one.offsetWidth;
+            //大图片的移动距离
+            var bigX = bigMax * oneX / max;
+            var bigY = bigMax * oneY / max;
+            // console.log(max);
+            big.style.top =  -bigY + 'px';
+            big.style.left = -bigX + 'px';
+        })
+    </script>
+</body>
+</html>
