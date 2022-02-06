@@ -26,11 +26,11 @@
         //函数的封装 
         function animate(obj,target){
             
-        var timer = setInterval(function(){
-            if(div.offsetLeft >= target){
-                clearInterval(timer);
+        obj.timer = setInterval(function(){
+            if(obj.offsetLeft >= target){
+                clearInterval(obj.timer);
             }
-            div.style.left = div.offsetLeft + 10 + 'px';
+            obj.style.left = obj.offsetLeft + 10 + 'px';
         },30)
         }
         var div = document.querySelector('div');
