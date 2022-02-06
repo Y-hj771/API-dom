@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .father {
+            width: 400px;
+            height: 400px;
+            background-color: gold;
+            margin: auto;
+        }
+        .son {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector('.father');
+        var son = document.querySelector('.son');
+        father.addEventListener('mouseenter',function(){
+            console.log(1);
+        })
+        //mouseenter不会往上冒泡，只会执行经过父盒子的时候触发  mouseover不仅会会执行鼠标移动到父盒子触发，鼠标移动到子盒子也会触发
+    </script>
+</body>
+</html>
