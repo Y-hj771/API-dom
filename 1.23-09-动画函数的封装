@@ -25,7 +25,7 @@
     <script>
         //函数的封装 
         function animate(obj,target){
-            
+         // clearInterval(obj.timer);可以解决动画重复加快这一问题
         obj.timer = setInterval(function(){
             if(obj.offsetLeft >= target){
                 clearInterval(obj.timer);
