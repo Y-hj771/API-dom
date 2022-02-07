@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .big {
+            cursor: pointer;
+            position: fixed;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background-color: red;
+            text-align: center;
+            line-height: 40px;
+        }
+        .hide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 200px;
+            height: 40px;
+            background-color:red;
+            z-index: -1;
+        }
+    </style>
+    <script src="./animate.js"></script>
+</head>
+<body>
+    <div class="big">
+        <span>←</span>
+        <div class="hide">我出来了</div>
+    </div>
+    <script>
+        var big = document.querySelector('.big');
+        var span = document.querySelector('span');
+        var hide = document.querySelector('.hide');
+        big.addEventListener('mouseenter',function(){
+            animate(hide,-160,function(){
+                big.children[0].innerHTML = '→';
+            });
+        })
+        big.addEventListener('mouseleave',function(){
+            animate(hide,0,function(){
+                big.children[0].innerHTML = '←';
+            });
+        })
+    </script>
+</body>
+</html>
