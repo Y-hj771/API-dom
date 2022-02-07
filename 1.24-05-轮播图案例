@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./轮播图.css">
+    <!-- 一定要写在轮播图导入的上面 -->
+    <script src="./animate.js"></script>
+    <script src="./轮播图.js"></script>
+</head>
+<body>
+    <div class="box">
+        <div class="jt">
+            <a href="javascript:;" class="l"><img src="./img/l.png" alt=""></a>
+            <a href="javascript:;" class="r"><img src="./img/r.png" alt=""></a>
+        </div>
+        <div class="main">
+            <ul>
+                <li><a href="#"><img src="./img/focus.jpg" alt=""></a></li>
+                <li><a href="#"><img src="./img/focus1.jpg" alt=""></a></li>
+                <li><a href="#"><img src="./img/focus2.jpg" alt=""></a></li>
+                <li><a href="#"><img src="./img/focus3.jpg" alt=""></a></li>
+            </ul>
+        </div>
+        <div class="point">
+            <ol>
+                
+            </ol>
+        </div>
+    </div>
+    <!-- <script>
+
+    </script> -->
+</body>
+</html>
+//css部分
+* {
+    margin: 0;
+    padding: 0;
+}
+.main ul {
+    list-style: none;
+}
+.box {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    /* border: 1px solid darkblue; */
+    margin: 100px auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+.main ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600%;
+}
+.main ul li a img {
+    float: left;
+    width: 800px;
+    height: 500px;
+}
+.l {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 200px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    /* 层级 */
+    z-index: 1;
+    /* background: firebrick; */
+    /* border-radius: 50%; */
+}
+.r {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 200px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    z-index: 1;
+    /* background: firebrick; */
+    /* border-radius: 50%;    */
+}
+.jt {
+    display: none;
+}
+ol {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-100px);
+    width: 200px;
+    height: 20px;
+    /* background-color:black; */
+}
+ol li {
+    cursor: pointer;
+    float: left;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    background-color:rgb(224, 222, 210);
+    border-radius: 50%;
+    opacity: .8;
+}
+.current {
+    background-color: rgba(10, 10, 4, 0.781);
+}
+//JavaScript部分
+window.addEventListener('load',function(){
+    var jt = document.querySelector('.jt');
+    var box =  document.querySelector('.box');
+    var kuandu = box.offsetWidth;
+
+    //鼠标移动到轮播图上出现左右箭头
+    box.addEventListener('mouseover',function(){
+        clearInterval(timer);
+        timer = null;
+        jt.style.display = 'block';
+    })
+
+    //鼠标移出轮播图 左右箭头消失
+    box.addEventListener('mouseleave',function(){
+        jt.style.display = 'none';
+        timer = setInterval(function(){
+        
+            //手动调用点击事件
+            r.click();
+        },2000)
+    })
+
+    //动态生成小圆点
+    var main = document.querySelector('.main');
+    var ul = main.querySelector('ul');
+    var point = document.querySelector('.point');
+    var ol = point.querySelector('ol');
+    // console.log(ul.children.length);
+    for(var i = 0;i < ul.children.length;i++){
+
+        //创建一个li
+        var li = document.createElement('li');
+
+        //自定义属性 记录当前属性索引号
+        li.setAttribute('index',i);
+
+        //把创建的li添加到ol里面
+        ol.appendChild(li);
+
+        //利用排他思想 实现点击小圆点
+        li.addEventListener('click',function(){
+            for(var i = 0;i < ol.children.length;i++){
+               
+                //先清空多有li的类名
+                ol.children[i].className = '';
+            }
+            
+            //留下自己 给当前小li设置类名
+            this.className = 'current';
+
+            //拿到点击的li的索引号
+            var index = this.getAttribute('index');
+            animate(ul,- index * kuandu);
+        })
+    }
+    var l = document.querySelector('.l');
+    var r = document.querySelector('.r');
+
+    //克隆第一张图片 添加到ul最后
+    var first = ul.children[0].cloneNode(true);
+    ul.appendChild(first);
+
+    //点击右侧按钮 图片滚动一张
+    var num = 0;
+
+    //定义一个控制小圆点的变量
+    var circle = 0;
+
+    //节流阀的作用 控制频发点击导致动画过快
+    var flag = true;
+    r.addEventListener('click',function(){
+       if(flag){
+           flag = false;
+             //如果走到最后复制的一张图片 此时 我们的ul 要快速复原 left 改为0
+        if(num == ul.children.length-1){
+            ul.style.left = 0;
+            num = 0;
+        }
+        num++;
+        animate(ul,- num * kuandu,function(){
+            flag = true;
+        });
+
+        circle++;
+        //点击右侧按钮 小圆点也跟着变化
+        if(circle == ol.children.length){
+            circle = 0;
+        }
+
+        //调用函数
+        circleChange();
+       }
+      
+        
+    })
+
+    l.addEventListener('click',function(){
+
+        //添加判断条件  节流阀的作用
+        if(flag){
+
+            //关闭节流阀
+            flag = false;
+
+             //如果走到最后复制的一张图片 此时 我们的ul 要快速复原 left 改为0
+        if(num == 0){
+            num = ul.children.length-1;
+            ul.style.left = (- num * kuandu) + 'px';
+        }
+        num--;
+        animate(ul,- num * kuandu,function(){
+            //通过回调函数 在动画结束后在打开节流阀
+            flag = true;
+        });
+
+        circle--;
+        //点击右侧按钮 小圆点也跟着变化
+        if(circle < 0){
+            circle = ol.children.length - 1;
+        }
+
+        //调用函数
+        circleChange();
+        
+        }
+       
+    })
+    //创建函数
+    function circleChange(){
+        for(var i = 0;i < ol.children.length;i++){
+            ol.children[i].className = '';
+        }
+        ol.children[circle].className = 'current';
+    }
+
+    //自动播放轮播图
+    var timer = setInterval(function(){
+        
+        //手动调用点击事件
+        r.click();
+    },2000)
+})
