@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            position: absolute;
+            left: 0;
+            top: 200px;
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <button class="one">前进</button>
+    <button class="two">后退</button>
+    <div></div>
+    <script>
+        //函数的封装 
+        function animate(obj,target){
+         // clearInterval(obj.timer);可以解决动画重复加快这一问题
+        obj.timer = setInterval(function(){
+            //步长公式写到定时器里面
+            var step = (target - obj.offsetLeft) / 10;
+            //添加Math 来解决小数问题
+            step = step > 0 ? Math.ceil(step) : Math.floor(step);
+            //注意这里的判断符 改为== 不在是之前的>=
+            if(obj.offsetLeft == target){
+                clearInterval(obj.timer);
+            }
+            //把每次加10 这个步长值改为一个慢慢变小的值 步长公式：(目标值 - 现在的位置)/10
+            obj.style.left = obj.offsetLeft + step + 'px';
+        },15)
+        }
+        var div = document.querySelector('div');
+        var one = document.querySelector('.one');
+        var two = document.querySelector('.two');
+        one.addEventListener('click',function(){
+            //函数调用
+            animate(div,900);
+        })
+        two.addEventListener('click',function(){
+            animate(div,500);
+        })
+        
+        //匀速动画 就是 盒子是当前的位置+固定的值 10
+        //缓动动画就是 盒子当前位置 + 变化的值(目标值 - 现在的位置)/10
+    </script>
+</body>
+</html>
