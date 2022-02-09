@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            margin: 20px auto;
+        } */
+        .one {
+            width: 80%;
+            height: 200px;
+            background-color: firebrick;
+            font-size: 50px;
+            color: black;
+        }
+        .two {
+            position: relative;
+            width: 80%;
+            height: 200px;
+            margin-top: 20px;
+            background-color:forestgreen;
+            font-size: 20px;
+            color: black;
+        }
+        .a {
+            /* display: none; */
+            position: absolute;
+            top: 378px;
+            right: 142px;
+            width: 50px;
+            height: 50px;
+            background-color:saddlebrown;
+            /* text-align: center; */
+        }
+        p {
+            display: none;
+            font-size: 10px;
+        }
+        .three {
+            width: 80%;
+            height: 1200px;
+            margin-top: 20px;
+            background-color:hotpink;
+            font-size: 50px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">第一个盒子</div>
+    <div class="a"><p>返回顶部</p></div>
+    <div class="two">第二个盒子</div>
+    <div class="three">第三个盒子</div>
+    <script>
+        var a = document.querySelector('.a');
+        var two = document.querySelector('.two');
+        var twoh = two.offsetTop;
+        var top1 = a.offsetTop - two.offsetTop;
+        var three = document.querySelector('.three');
+        var p = document.querySelector('p');
+        var threeh = three.offsetTop;
+        document.addEventListener('scroll',function(){
+            // console.log(window.pageYOffset);
+            if(window.pageYOffset >= twoh){
+                // a.style.display = 'block';
+                a.style.position = 'fixed';
+                a.style.top = top1 + 'px';
+            }else {
+                a.style.position = 'absolute';
+                a.style.top = 378 + 'px';
+                // a.style.display = 'none';
+            }
+            if(window.pageYOffset >= threeh){
+                p.style.display = 'block';
+            }
+            else {
+                p.style.display = 'none';
+            }
+        })
+            //当我们点击文字即可返回给定值的位置
+            p.addEventListener('click',function(){
+                // window.scroll(0,20);//(x,y)
+                animate(window,0);
+            })
+
+
+            //利用动画来实现返回顶部的效果
+        function animate(obj,target,callback){//callback = function(){}
+        clearInterval(obj.timer);//可以解决动画重复加快这一问题
+        obj.timer = setInterval(function(){
+       //步长公式写到定时器里面
+       var step = (target - obj.pageYOffset) / 10;
+       //添加Math 来解决小数问题
+       step = step > 0 ? Math.ceil(step) : Math.floor(step);
+       //注意这里的判断符 改为== 不在是之前的>=
+       if(obj.pageYOffset == target){
+           clearInterval(obj.timer);
+           //回调函数写在关闭计时器里面
+        //    if(callback){
+        //        callback();
+        //    }
+        callback && callback();
+       }
+       //把每次加10 这个步长值改为一个慢慢变小的值 步长公式：(目标值 - 现在的位置)/10
+    //    obj.style.left = obj.offsetLeft + step + 'px';
+          window.scroll(0,window.pageYOffset + step);
+   },15)
+   }
+    </script>
+</body>
+</html>
