@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* * {
+            margin: 20px auto;
+        } */
+        .one {
+            width: 80%;
+            height: 200px;
+            background-color: firebrick;
+            font-size: 50px;
+            color: black;
+        }
+        .two {
+            position: relative;
+            width: 80%;
+            height: 200px;
+            margin-top: 20px;
+            background-color:forestgreen;
+            font-size: 20px;
+            color: black;
+        }
+        .a {
+            /* display: none; */
+            position: absolute;
+            top: 378px;
+            right: 142px;
+            width: 50px;
+            height: 50px;
+            background-color:saddlebrown;
+            /* text-align: center; */
+        }
+        p {
+            display: none;
+            font-size: 10px;
+        }
+        .three {
+            width: 80%;
+            height: 1200px;
+            margin-top: 20px;
+            background-color:hotpink;
+            font-size: 50px;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="one">第一个盒子</div>
+    <div class="a"><p>返回顶部</p></div>
+    <div class="two">第二个盒子</div>
+    <div class="three">第三个盒子</div>
+    <script>
+        var a = document.querySelector('.a');
+        var two = document.querySelector('.two');
+        var twoh = two.offsetTop;
+        var top1 = a.offsetTop - two.offsetTop;
+        var three = document.querySelector('.three');
+        var p = document.querySelector('p');
+        var threeh = three.offsetTop;
+        document.addEventListener('scroll',function(){
+            // console.log(window.pageYOffset);
+            if(window.pageYOffset >= twoh){
+                // a.style.display = 'block';
+                a.style.position = 'fixed';
+                a.style.top = top1 + 'px';
+            }else {
+                a.style.position = 'absolute';
+                a.style.top = 378 + 'px';
+                // a.style.display = 'none';
+            }
+            if(window.pageYOffset >= threeh){
+                p.style.display = 'block';
+            }
+            else {
+                p.style.display = 'none';
+            }
+        })
+        //当我们点击文字即可返回给定值的位置
+            p.addEventListener('click',function(){
+                window.scroll(0,20);//(x,y)
+            })
+    </script>
+</body>
+</html>
