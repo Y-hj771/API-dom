@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .box {
+            /* display: flex;
+            justify-content: center;
+            align-items: center; */
+            position: relative;
+            margin: 100px auto;
+            width: 800px;
+            height: 80px;
+            /* background-color: firebrick; */
+        }
+        ul {
+            position: absolute;
+            width: 400px;
+            height: 50px;
+            top: 50%;
+            left: 50%;
+            margin-top: -25px;
+            margin-left: -200px;
+            /* background-color: #eee; */
+            /* z-index: 999; */
+        }
+        ul li {
+            float: left;
+            width: 100px;
+            height: 50px;
+            background-color: rgb(230, 226, 220);
+            /* margin: 0 50px; */
+            color: blue;
+            text-align: center;
+            line-height: 50px;
+            opacity: .4;
+        }
+        span {
+            position: absolute;
+            top: 24px;
+            left: 211px;
+            float: left;
+            width: 83px;
+            height: 42px;
+            background: url('./img/cloud.gif')no-repeat;
+            opacity: .6;
+        }
+    </style>
+    <script src="../1.24/animate.js"></script>
+    <script>
+        window.addEventListener('load',function(){
+            var span = document.querySelector('span');
+            var ul = document.querySelector('ul');
+            var lis = ul.querySelectorAll('li');
+            var current = 0;
+            for(var i = 0;i < lis.length;i++){
+                lis[i].addEventListener('mouseenter',function(){
+                    animate(span,this.offsetLeft + 211);
+                })
+
+                lis[i].addEventListener('mouseleave',function(){
+                    animate(span,current);
+                })
+
+                lis[i].addEventListener('click',function(){
+                    current = this.offsetLeft + 211;
+                })
+            }
+        })
+    </script>
+</head>
+<body>
+    <div class="box">
+        <span></span>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+    </div>
+</body>
+</html>
